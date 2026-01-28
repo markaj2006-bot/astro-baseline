@@ -30,8 +30,48 @@ const title = `Contact — ${site.name}`;
       </p>
     )}
 
-    <p>
-      This keeps the baseline simple and avoids unnecessary JavaScript.
-    </p>
+    <section class="block">
+      <h2>Formularz kontaktowy</h2>
+      <form class="contact-form" method="post" action="#" style="max-width:680px;">
+        <label style="display:block;margin-bottom:0.5rem;">
+          Imię
+          <input type="text" name="name" required placeholder="Twoje imię" style="width:100%;padding:0.5rem;margin-top:0.25rem;border-radius:6px;border:1px solid #e5e7eb;" />
+        </label>
+
+        <label style="display:block;margin:0.75rem 0 0.5rem;">
+          Email
+          <input type="email" name="email" required placeholder="twoj@mail.com" style="width:100%;padding:0.5rem;margin-top:0.25rem;border-radius:6px;border:1px solid #e5e7eb;" />
+        </label>
+
+        <label style="display:block;margin:0.75rem 0 0.5rem;">
+          Temat
+          <input type="text" name="subject" placeholder="Temat wiadomości" style="width:100%;padding:0.5rem;margin-top:0.25rem;border-radius:6px;border:1px solid #e5e7eb;" />
+        </label>
+
+        <label style="display:block;margin:0.75rem 0 0.5rem;">
+          Wiadomość
+          <textarea name="message" required placeholder="Napisz wiadomość" rows="6" style="width:100%;padding:0.5rem;margin-top:0.25rem;border-radius:6px;border:1px solid #e5e7eb;"></textarea>
+        </label>
+
+        <div style="margin-top:0.75rem;display:flex;gap:0.5rem;align-items:center;">
+          <button type="submit" class="btn">Wyślij</button>
+          <p id="form-status" style="margin:0;color:green;display:none;">Dziękujemy — wiadomość wysłana.</p>
+        </div>
+      </form>
+
+      <p style="margin-top:0.75rem;font-size:0.95rem;color:#6b7280;">Formularz jest przykładowy i nie wysyła wiadomości — podłącz backend lub usługę typu Formspree, Netlify Forms itp.</p>
+    </section>
   </article>
+  <script>
+    (function () {
+      const form = document.querySelector('.contact-form');
+      const status = document.getElementById('form-status');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        status.style.display = 'inline';
+        form.reset();
+      });
+    })();
+  </script>
 </Base>
